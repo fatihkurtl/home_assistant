@@ -13,7 +13,8 @@ class TVRemoteApp:
         self.page.theme_mode = ft.ThemeMode.DARK
         self.page.padding = 20
         self.page.window.width = 600
-        self.page.window.height = 800
+        self.page.window.height = 700
+        self.page.scroll = ft.ScrollMode.AUTO
         
         self.init_ui()
         self.auto_connect()
@@ -173,15 +174,21 @@ class TVRemoteApp:
             )
         )
         
-        self.page.add(
-            status_card,
-            volume_card,
-            nav_card,
-            media_card,
-            channel_card,
-            apps_card,
-            notify_card
+        scrollable_content = ft.Column(
+            controls=[
+                status_card,
+                volume_card,
+                nav_card,
+                media_card,
+                channel_card,
+                apps_card,
+                notify_card
+            ],
+            scroll=ft.ScrollMode.AUTO,
+            spacing=10
         )
+        
+        self.page.add(scrollable_content)
         
         self.update_buttons_state(False)
     
